@@ -1,0 +1,29 @@
+p
+  b
+    | Keyword:
+  = @query.keyword
+p
+  b
+    | Provider:
+  = @query.search_engine
+p
+  b
+    | Time:
+  = @query.created_at
+
+table.table
+  thead
+    tr
+      th scope="col"  Position
+      th scope="col"  Website
+      th scope="col"  Full link
+
+  tbody
+    - @query.results.each do |result|
+      tr
+        th
+          = result.position
+        td
+          = result.website
+        td
+          = result.full_link

@@ -1,0 +1,25 @@
+= form_tag ('/queries'), method: :post, class: 'form-inline', remote: true do
+  .form-group.mb-2
+    = label_tag 'Keyword'
+  .form-group.mx-sm-3.mb-2
+    = text_field_tag :queries, nil, class: 'form-control'
+  .form-group
+    = submit_tag 'Search', class: 'btn btn-primary mb-2'
+#result
+
+#queries
+  table.table
+    thead
+      tr
+        th scope="col"  Keyword
+        th scope="col"  Provider
+        th scope="col"  Time
+    tbody
+      - @queries.each do |query|
+        tr
+          th
+            = link_to query.keyword, query_path(query)
+          td
+            = query.search_engine
+          td
+            = query.created_at
